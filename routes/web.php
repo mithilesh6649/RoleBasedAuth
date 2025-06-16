@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\VideoUploadController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +29,10 @@ Route::group(['middleware' => ['auth', 'employe']], function () {
     Route::get('aa/dashboardwwww', [App\Http\Controllers\HomeController::class, 'indexwww'])->name('employe.dashboardeee');
 });
 
-Route::group(['middleware' => ['auth', 'employer', 'verified']], function () {
+Route::group(['middleware' => ['auth', 'employer']], function () {
     Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'index2'])->name('employer.dashboard');
 });
+
+
+Route::get('/upload', [App\Http\Controllers\VideoUploadController::class, 'uploadView'])->name('upload');
+Route::post('/upload', [App\Http\Controllers\VideoUploadController::class, 'upload'])->name('upload.video');
